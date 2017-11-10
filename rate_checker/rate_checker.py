@@ -1,16 +1,21 @@
 from __future__ import absolute_import
 import time
+import requests
 
 
-# Coincheck API Client
 class CoincheckClient:
+    '''
+        Coincheck API Client
+    '''
+    URL = 'https://coincheck.com/api'
+
     def get_rate(self):
-        print("hogehoge")
+        rate = requests.get(self.URL + '/rate/btc_jpy').json()
+        print('%s' % rate)
 
 
-# Check rate with Coincheck API per 10 seconds
+# Check rate with Coincheck API per 1 seconds
 client = CoincheckClient()
 while True:
     client.get_rate()
-    time.sleep(10)
-    
+    time.sleep(1)
